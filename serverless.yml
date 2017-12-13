@@ -8,7 +8,10 @@ plugins:
 provider:
   name: aws
   runtime: nodejs6.10
-  region: ${file(./constants.js):constants.AWS_REGION}
+  region: ${self:provider.environment.AWS_REGION}
+  environment:
+    AWS_REGION: ${env:AWS_REGION, file(./constants.js):constants.AWS_REGION, 'us-east-1'}
+    AMI_RETENTION_PERIOD: ${env:AMI_RETENTION_PERIOD, file(./constants.js):constants.AMI_RETENTION_PERIOD, '7'}
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -30,4 +33,4 @@ functions:
   createAndDeleteAMI:
     handler: handler.createAndDeleteAMI
     events:
-      - schedule: ${file(./constants.js):constants.INVOCATION_SCHEDULE}
+      - schedule: ${env:INVOCATION_SCHEDULE, file(./constants.js):constants.INVOCATION_SCHEDULE, 'cron(0 0 * * ? *)'}

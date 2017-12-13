@@ -1,7 +1,7 @@
 import AWS from 'aws-sdk';
-import { constants } from './constants';
 
-const { AWS_REGION, AMI_RETENTION_PERIOD } = constants();
+const AWS_REGION = process.env.AWS_REGION;
+const AMI_RETENTION_PERIOD = parseInt(process.env.AMI_RETENTION_PERIOD, 10);
 
 AWS.config.region = AWS_REGION;
 const ec2 = new AWS.EC2();
