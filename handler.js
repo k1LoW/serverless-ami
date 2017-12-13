@@ -1,9 +1,9 @@
 import AWS from 'aws-sdk';
 
-const AWS_REGION = process.env.AWS_REGION;
+const AMI_AWS_REGION = process.env.AMI_AWS_REGION;
 const AMI_RETENTION_PERIOD = parseInt(process.env.AMI_RETENTION_PERIOD, 10);
 
-AWS.config.region = AWS_REGION;
+AWS.config.region = AMI_AWS_REGION;
 const ec2 = new AWS.EC2();
 
 /**
