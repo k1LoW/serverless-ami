@@ -4,7 +4,7 @@
 * Run `serverless install --url https://github.com/boiyaa/serverless-ami` to install this service
 * Run `cd serverless-ami`
 * Run `npm install`
-* Configure `constants.js`
+* Configure `serverless.yml:custom.ami` params
 * Tag target instances `Key:Backup, Value:yes` on your AWS
 * To check the functions,
   * Run `serverless webpack invoke --function createAMI`
